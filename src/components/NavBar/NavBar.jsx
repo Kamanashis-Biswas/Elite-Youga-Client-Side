@@ -1,7 +1,17 @@
 import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
+import { useContext } from "react";
 
 
 const NavBar = () => {
+
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error));
+    }
 
     const navOptions = <>
         <li><Link to="/">Home</Link></li>
@@ -30,19 +40,22 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    {/* <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" />
-                            </div>
-                        </label>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a>Name</a></li>
-                            <li><a>Email</a></li>
-                            <li><a>Logout</a></li>
-                        </ul>
-                    </div> */}
-                    <Link to='/login'><button>Login</button></Link>
+                    {
+                        user ? <div className="dropdown dropdown-end">
+                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img src={user.photoURL} />
+                                </div>
+                            </label>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                                <li><a>{user.displayName}</a></li>
+                                <li><a>{user.email}</a></li>
+                                <li onClick={handleLogout}><a>Logout</a></li>
+                            </ul>
+                        </div>
+                            : <Link to='/login'><button>Login</button></Link>
+                    }
+
 
                 </div>
             </div>
