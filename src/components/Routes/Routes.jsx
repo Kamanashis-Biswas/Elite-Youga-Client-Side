@@ -34,11 +34,11 @@ export const router = createBrowserRouter([
                 path: '/signup',
                 element: <SignUp></SignUp>
             },
-
+            {
+                path: '/dashboard',
+                element: <Dashboard></Dashboard>
+                
+            }
         ]
     },
-    {
-        path: '/dashboard',
-        element: <Dashboard></Dashboard>
-    }
 ]);

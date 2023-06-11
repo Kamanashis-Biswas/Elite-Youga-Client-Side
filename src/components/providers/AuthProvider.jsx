@@ -36,15 +36,24 @@ const AuthProvider = ({ children }) => {
     
     const logOut = () => {
         setLoading(true);
+        setUser("");
         return signOut(auth);
     }
 
     
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser);
-            console.log('current user', currentUser);
-            setLoading(false);
+            fetch(`http://localhost:5000/user?email=${currentUser.email}`)
+                .then(data=>data.json())
+                .then(data=>{
+                    currentUser.role = data.user.role;
+                    localStorage.setItem('role', data.user.role);
+                    setUser(currentUser);
+                    setLoading(false);
+                }).catch(err=>{
+                    setUser(currentUser);
+                    setLoading(false);
+                })
         });
         return()=>{
             return unsubscribe();

@@ -1,15 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import { useContext } from "react";
+import Swal from "sweetalert2";
 
 
 const NavBar = () => {
 
     const { user, logOut } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const handleLogout = () => {
         logOut()
-            .then(() => { })
+            .then(() => {
+                Swal.fire({
+                    title: 'Logout Successful.',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                });
+                navigate(from, { replace: true });
+             })
             .catch(error => console.log(error));
     }
 
@@ -32,7 +48,7 @@ const NavBar = () => {
                             {navOptions}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">EliteSports</a>
+                    <a className="btn btn-ghost normal-case text-xl">EliteYouga</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -62,6 +78,7 @@ const NavBar = () => {
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                                 <li><a className="text-xs">{user.displayName}</a></li>
                                 <li><a className="text-xs">{user.email}</a></li>
+                                <li><a className="text-xs">{user.role}</a></li>
                                 <li onClick={handleLogout}><a className="text-xs">Logout</a></li>
                             </ul>
                         </div>

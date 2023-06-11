@@ -1,9 +1,20 @@
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 
 const Classes = () => {
     return (
         <div>
-            <h2>This is Classes</h2>
+            <SectionTitle heading={"Class List"}></SectionTitle>
+            <div className="card w-96 bg-base-100 shadow-xl mb-10">
+                <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+                <div className="card-body">
+                    <h2 className="card-title">Shoes!</h2>
+                    <p>If a dog chews shoes whose shoes does he choose?</p>
+                    <div className="card-actions justify-end">
+                        <button className="btn btn-primary">Buy Now</button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

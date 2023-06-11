@@ -5,9 +5,9 @@ import Footer from "../components/Footer/Footer";
 
 const Main = () => {
     return (
-        <div>
+        <div style={{display: 'flex', flexDirection:"column", height:"100%"}}>
             <NavBar></NavBar>
-            <Outlet></Outlet>
+            <Outlet style={{flex: 3}}></Outlet>
             <Footer></Footer>
         </div>
     );
