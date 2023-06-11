@@ -9,7 +9,7 @@ const Dashboard = () => {
                 <div className="flex-auto sm:w-64 sm:flex-none bg-teal-100 h-full">
                     {role === "admin" ? (
                         <div className="flex flex-row sm:flex-col list-none mt-10 ml-5 gap-4">
-                            <NavLink to='manageclasses'><li>Manage Classes</li></NavLink>
+                            <NavLink to='manageclasses' ><li>Manage Classes</li></NavLink>
                             <NavLink to='manageusers'><li>Manage Users</li></NavLink>
 
 
