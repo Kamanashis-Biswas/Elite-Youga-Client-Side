@@ -26,13 +26,11 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 Swal.fire({
-                    title: 'User Login Successful.',
-                    showClass: {
-                        popup: 'animate__animated animate__fadeInDown'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__fadeOutUp'
-                    }
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Login Successfully.',
+                    showConfirmButton: false,
+                    timer: 1500
                 });
                 navigate(from, { replace: true });
             })
@@ -54,7 +52,7 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="text" name="password" placeholder="password" className="input input-bordered" />
+                            <input type="password" name="password" placeholder="password" className="input input-bordered" />
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-primary" type="submit" value="Login" />

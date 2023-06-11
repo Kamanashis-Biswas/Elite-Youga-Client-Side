@@ -16,13 +16,11 @@ const NavBar = () => {
         logOut()
             .then(() => {
                 Swal.fire({
-                    title: 'Logout Successful.',
-                    showClass: {
-                        popup: 'animate__animated animate__fadeInDown'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__fadeOutUp'
-                    }
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Logout successfully.',
+                    showConfirmButton: false,
+                    timer: 1500
                 });
                 navigate(from, { replace: true });
              })
