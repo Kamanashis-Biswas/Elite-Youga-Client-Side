@@ -34,11 +34,11 @@ const ManageUsers = () => {
                                     <br />
                                 </td>
                                 <td>
-                                    <select className="select w-full max-w-xs">
-                                        <option disabled selected>Select User Role</option>
-                                        <option>Admin</option>
-                                        <option>Instructor</option>
-                                    </select>
+                                    <div className="flex flex-col">
+                                        <button className="btn btn-sm mb-2">Admin</button>
+                                        <button className="btn btn-sm mb-2">Instructor</button>
+                                        <button className="btn btn-sm mb-2">Student</button>
+                                    </div>
                                 </td>
 
                             </tr>

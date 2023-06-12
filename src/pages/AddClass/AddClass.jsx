@@ -37,7 +37,7 @@ const AddClass = () => {
     };
     return (
         <div>
-          <div className="w-1/2 mx-auto my-10">
+          <div className="my-10">
             <div className="card shadow-2xl bg-base-100">
               <h2 className="mt-10 text-center text-lg">This is ADD Class</h2>
               <form onSubmit={handleSubmit} className="card-body">
