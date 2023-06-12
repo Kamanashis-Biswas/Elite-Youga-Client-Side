@@ -20,9 +20,9 @@ const Dashboard = () => {
                     ) : ""}
 
                     {role === "student" ? (
-                        <div className="flex flex-row sm:flex-col">
-                            <NavLink><li className="bg-sky-300 w-5/6 p-4 rounded-xl text-lg">Selected Class</li></NavLink>
-                            <NavLink><li className="bg-sky-300 w-5/6 p-4 rounded-xl text-lg">Enrolled Class</li></NavLink>
+                        <div className="flex flex-row sm:flex-col list-none mt-10 ml-5 gap-4 p-10 md:p-0">
+                            <NavLink to="selectedclass"><li className="bg-sky-300 w-5/6 p-4 rounded-xl text-lg">Selected Class</li></NavLink>
+                            <NavLink to="enrolledclass"><li className="bg-sky-300 w-5/6 p-4 rounded-xl text-lg">Enrolled Class</li></NavLink>
                         </div>
                     ) : ""}
             </div>

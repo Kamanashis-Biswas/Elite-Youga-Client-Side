@@ -13,6 +13,8 @@ import ManageUsers from "../../pages/ManageUsers/ManageUsers";
 import AddClass from "../../pages/AddClass/AddClass";
 import MyClasses from "../../pages/MyClasses/MyClasses";
 import ErrorPage from "../../pages/Error/Error";
+import SelectedClass from "../../pages/SelectedClass/SelectedClass";
+import EnrolledClass from "../../pages/EnrolledClass/EnrolledClass";
 
 export const router = createBrowserRouter([
     {
@@ -59,6 +61,14 @@ export const router = createBrowserRouter([
                    {
                     path:'myclasses',
                     element: <MyClasses></MyClasses>
+                   },
+                   {
+                    path:'selectedclass',
+                    element: <SelectedClass></SelectedClass>
+                   },
+                   {
+                    path:'enrolledclass',
+                    element: <EnrolledClass></EnrolledClass>
                    },
                 ]
             }

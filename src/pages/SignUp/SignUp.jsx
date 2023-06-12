@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../components/providers/AuthProvider";
@@ -11,9 +11,15 @@ const SignUp = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const [passError, setPassError] = useState('');
+
     const from = location.state?.from?.pathname || "/";
 
     const onSubmit = data => {
+
+        if(data.password !== data.confirmPassword){
+           setPassError('Password and Confirm Password are not Same');
+        }
 
         createUser(data.email, data.password)
             .then(result => {
@@ -88,6 +94,13 @@ const SignUp = () => {
                             {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
                             {errors.password?.type === 'maxLength' && <p className="text-red-600">Password must be less than 20 characters</p>}
                             {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one Uppercase one lower case, one number and one special character.</p>}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Confirm Password</span>
+                            </label>
+                            <input type="password"  {...register("confirmPassword", { required: true })} placeholder="confirm Password" className="input input-bordered" />
+                             <span className="text-red-600">{passError}</span>
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-primary" type="submit" value="Sign Up" />
