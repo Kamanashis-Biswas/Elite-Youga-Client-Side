@@ -1,23 +1,51 @@
-import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../components/providers/AuthProvider";
 
 
 const ManageClass = () => {
+    const { user } = useContext(AuthContext);
+    const [data, setData] = useState([]);
+
+    const updateStatus = async({id, status})=>{
+        const resp = await fetch(`http://localhost:5000/update-class?id=${id}&status=${status}`);
+        const data = await resp.json();
+    }
+
+    useEffect(() => {
+        const resp = fetch(`http://localhost:5000/all-class`)
+            .then(resp => resp.json())
+            .then(data => {
+                setData(data.data || []);
+            })
+    }, []);
+    if(!data.length) return (<div>No classes found!</div>);
     return (
-        <div>
-            <SectionTitle heading={"Manage Class"}></SectionTitle>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-10 ml-2 md:ml-5 justify-center">
-                <div className="card w-80 bg-base-100 shadow-xl">
-                    <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title">Shoes!
-                        <div className="badge badge-secondary">Status</div>
-                        </h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Buy Now</button>
+        <div className="overflow-auto h-full">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-10 h-full">
+                {data.map(d => (
+                    <div key={d._id} className="card ml-3 w-70 bg-base-100 shadow-xl">
+                        <figure><img src={d.class_image} alt="Shoes" /></figure>
+                        <div className="card-body">
+                            <h2 className="card-title">
+                                {d.class_name}
+                                <div className="badge badge-secondary">{d.status}</div>
+                            </h2>
+                            <p>Available Seat: {d.seats}</p>
+                            {user?.role === 'instructors' ?
+                                (<div className="flex gap-10">
+                                    <button className="btn btn-sm">Feedback</button>
+                                    <button className="btn btn-sm">Update</button>
+                                </div>):""
+                            }
+                            {user?.role === 'admin' ?
+                                (<div className="flex gap-10">
+                                    <button onClick={()=>updateStatus({id: d._id, status:"approved"})} className="btn btn-sm">Approve</button>
+                                    <button onClick={()=>updateStatus({id: d._id, status:"denied"})} className="btn btn-sm">Deny</button>
+                                </div>):""
+                            }
                         </div>
-                    </div>
-                </div>
+                    </div>))
+                }
             </div>
         </div>
     );
