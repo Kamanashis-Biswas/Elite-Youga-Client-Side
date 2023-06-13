@@ -7,7 +7,9 @@ const Main = () => {
     return (
         <div style={{display: 'flex', flexDirection:"column", height:"100%"}}>
             <NavBar></NavBar>
-            <Outlet style={{flex: 3}}></Outlet>
+            <div className="flex-1">
+                <Outlet></Outlet>
+            </div>
             <Footer></Footer>
         </div>
     );
