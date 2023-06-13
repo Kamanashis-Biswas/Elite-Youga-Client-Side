@@ -1,23 +1,35 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../components/providers/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const ManageClass = () => {
     const { user } = useContext(AuthContext);
     const [data, setData] = useState([]);
 
+    const [update,setUpdate] = useState(false);
+
     const updateStatus = async({id, status})=>{
         const resp = await fetch(`http://localhost:5000/update-class?id=${id}&status=${status}`);
         const data = await resp.json();
+        setUpdate(!update);
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Class Status Updated',
+            showConfirmButton: false,
+            timer: 1500
+        });
     }
 
     useEffect(() => {
         const resp = fetch(`http://localhost:5000/all-class`)
             .then(resp => resp.json())
             .then(data => {
+                console.log(data.data);
                 setData(data.data || []);
             })
-    }, []);
+    }, [update]);
     if(!data.length) return (<div>No classes found!</div>);
     return (
         <div className="overflow-auto h-full">

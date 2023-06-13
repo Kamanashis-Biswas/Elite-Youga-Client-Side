@@ -23,7 +23,7 @@ const Classes = () => {
                         <p>Available Seat: {c.seats}</p>
                         <p>Price: {c.price}</p>
                         <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Buy Now</button>
+                            <button className="btn btn-primary">Add Class</button>
                         </div>
                     </div>
                 </div>

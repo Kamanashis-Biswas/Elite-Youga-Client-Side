@@ -1,13 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import {useLocation, useNavigate} from 'react-router-dom';
+import Swal from "sweetalert2";
 
 const ManageUsers = () => {
     const [users, setUsers] = useState([]);
     const location  = useLocation();
     const navigate = useNavigate();
 
+    const [update,setUpdate] = useState(false);
+
     const updateRole = ({id, role})=>{
         fetch(`http://localhost:5000/update-user?id=${id}&role=${role}`).then(()=>{});
+        setUpdate(!update);
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Role Updated',
+            showConfirmButton: false,
+            timer: 1500
+        });
     };
     useEffect(()=>{
         fetch('http://localhost:5000/user')
@@ -16,7 +27,7 @@ const ManageUsers = () => {
                 setUsers(data.users);
             });
 
-    }, []);
+    }, [update]);
     return (
         <div>
             <div>
@@ -50,9 +61,9 @@ const ManageUsers = () => {
                                 </td>
                                 <td>
                                     <div className="flex flex-col">
-                                        <button onClick={()=>updateRole({id: u._id, role: "admin"})} className="btn btn-sm mb-2">Admin</button>
-                                        <button onClick={()=>updateRole({id: u._id, role: "instructors"})} className="btn btn-sm mb-2">Instructor</button>
-                                        <button onClick={()=>updateRole({id: u._id, role: "student"})} className="btn btn-sm mb-2">Student</button>
+                                        <button onClick={()=>updateRole({id: u._id, role: "admin"})} className={`btn btn-sm mb-2 ${u.role=="admin"?"bg-red-500 disabled":""}`}>Admin</button>
+                                        <button onClick={()=>updateRole({id: u._id, role: "instructors"})} className={`btn btn-sm mb-2 ${u.role=="instructors"?"bg-sky-300 disabled":""}`}>Instructor</button>
+                                        {/* <button onClick={()=>updateRole({id: u._id, role: "student"})} className="btn btn-sm mb-2">Student</button> */}
                                     </div>
                                 </td>
 

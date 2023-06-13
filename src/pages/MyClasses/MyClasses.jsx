@@ -26,7 +26,7 @@ const MyClasses = () => {
                         <div className="card-body">
                             <h2 className="card-title">
                                 {d.class_name}
-                                <div className="badge badge-secondary">Status</div>
+                                <div className="badge badge-secondary">{d.status}</div>
                             </h2>
                             <p>Available Seat: {d.seats}</p>
                             <div className="flex gap-10">
