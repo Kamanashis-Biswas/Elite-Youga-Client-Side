@@ -18,7 +18,7 @@ const MyClasses = () => {
     }, [user]);
     return (
         <div >
-            <SectionTitle heading={"My Classes Page"}></SectionTitle>
+            
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-10 justify-center">
                 {data.map(d => (
                     <div key={d._id} className="card ml-3 w-80 bg-base-100 shadow-xl">

@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 const Dashboard = () => {
     const [role, setRole] = useState(localStorage.getItem('role'));
     return (
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row h-full">
             <div className="w-full md:w-1/5 bg-gray-300">
             {role === "admin" ? (
                         <div className="flex flex-row sm:flex-col list-none mt-10 ml-5 gap-4 p-10 md:p-0">
@@ -27,7 +27,7 @@ const Dashboard = () => {
                     ) : ""}
             </div>
             <div className="w-full md:w-4/5">
-            <Outlet></Outlet>
+                <Outlet></Outlet>
             </div>
         </div>
        
