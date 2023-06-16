@@ -48,6 +48,7 @@ const AuthProvider = ({ children }) => {
                 .then(data=>{
                     currentUser.role = data.user.role;
                     localStorage.setItem('role', data.user.role);
+                    localStorage.setItem('userId', data.user._id);
                     setUser(currentUser);
                     setLoading(false);
                 }).catch(err=>{

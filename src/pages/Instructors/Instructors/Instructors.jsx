@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 
 const Instructors = () => {
@@ -12,6 +13,9 @@ const Instructors = () => {
     }, []);
     return (
         <div>
+            <Helmet>
+                <title>EliteYoga | Instructors</title>
+            </Helmet>
             <div className="overflow-x-auto p-4 mb-10 border rounded-lg w-1/2 mx-auto">
                 <table className="table">
                     {/* head */}

@@ -15,6 +15,7 @@ import MyClasses from "../../pages/MyClasses/MyClasses";
 import ErrorPage from "../../pages/Error/Error";
 import SelectedClass from "../../pages/SelectedClass/SelectedClass";
 import EnrolledClass from "../../pages/EnrolledClass/EnrolledClass";
+import CheckoutForm from "../../pages/Payment/CheckoutForm";
 
 export const router = createBrowserRouter([
     {
@@ -74,4 +75,8 @@ export const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: '/payment',
+        element: <CheckoutForm/>
+    }
 ]);

@@ -17,8 +17,8 @@ const SignUp = () => {
 
     const onSubmit = data => {
 
-        if(data.password !== data.confirmPassword){
-           setPassError('Password and Confirm Password are not Same');
+        if (data.password !== data.confirmPassword) {
+            setPassError('Password and Confirm Password are not Same');
         }
 
         createUser(data.email, data.password)
@@ -29,7 +29,7 @@ const SignUp = () => {
 
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        const saveUser = { name: data.name, email: data.email }
+                        const saveUser = { name: data.name, email: data.email, role: "student" }
                         fetch('http://localhost:5000/users', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -100,7 +100,7 @@ const SignUp = () => {
                                 <span className="label-text">Confirm Password</span>
                             </label>
                             <input type="password"  {...register("confirmPassword", { required: true })} placeholder="confirm Password" className="input input-bordered" />
-                             <span className="text-red-600">{passError}</span>
+                            <span className="text-red-600">{passError}</span>
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-primary" type="submit" value="Sign Up" />

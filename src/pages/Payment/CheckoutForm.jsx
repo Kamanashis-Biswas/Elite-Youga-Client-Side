@@ -1,39 +1,53 @@
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
+import { CardElement, Elements, useElements, useStripe } from "@stripe/react-stripe-js"
 import { useEffect, useState } from "react";
+import {loadStripe} from '@stripe/stripe-js';
+
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useAuth from "../../../hooks/useAuth";
-import './CheckoutForm.css';
+import { Helmet } from "react-helmet-async";
+// import useAxiosSecure from "../../../hooks/useAxiosSecure";
+// import useAuth from "../../../hooks/useAuth";
+// import './CheckoutForm.css';
+const stripePromise = loadStripe('STRIPE_PUBLISHABLE_API_KEY');
+
+
+
+const Wrapper = (props) => (
+  <Elements stripe={stripePromise}>
+    <CheckoutForm {...props} />
+  </Elements>
+);
 
 const CheckoutForm = ({ cart, price }) => {
     const stripe = useStripe();
     const elements = useElements();
-    const { user } = useAuth();
-    const [axiosSecure] = useAxiosSecure()
+    // const { user } = useAuth();
+    const { user } = {};
+    // const [axiosSecure] = useAxiosSecure()
     const [cardError, setCardError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
 
 
-    useEffect(() => {
-        if (price > 0) {
-            axiosSecure.post('/create-payment-intent', { price })
-                .then(res => {
-                    console.log(res.data.clientSecret);
-                    setClientSecret(res.data.clientSecret);
-                })
-        }
-    }, [price, axiosSecure])
+    // useEffect(() => {
+    //     if (price > 0) {
+    //         axiosSecure.post('/create-payment-intent', { price })
+    //             .then(res => {
+    //                 console.log(res.data.clientSecret);
+    //                 setClientSecret(res.data.clientSecret);
+    //             })
+    //     }
+    // }, [price, axiosSecure])
 
 
     const handleSubmit = async (event) => {
+        /*
         event.preventDefault();
 
         if (!stripe || !elements) {
             return;
         }
-
+MyComponent
         const card = elements.getElement(CardElement);
         if (card == null) {
             return;
@@ -98,11 +112,15 @@ const CheckoutForm = ({ cart, price }) => {
                     }
                 })
         }
-
+*/
     }
 
     return (
         <>
+         <Helmet>
+                <title>EliteYoga | Payments</title>
+            </Helmet>
+
             <form className="w-2/3 m-8" onSubmit={handleSubmit}>
                 <CardElement
                     options={{
@@ -132,4 +150,4 @@ const CheckoutForm = ({ cart, price }) => {
     );
 };
 
-export default CheckoutForm;
+export default Wrapper;

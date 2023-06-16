@@ -1,6 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../components/providers/AuthProvider";
-import SectionTitle from "../../components/SectionTitle/SectionTitle";
 
 
 const MyClasses = () => {
@@ -17,8 +16,8 @@ const MyClasses = () => {
         return () => { user };
     }, [user]);
     return (
+        
         <div >
-            
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-10 justify-center">
                 {data.map(d => (
                     <div key={d._id} className="card ml-3 w-80 bg-base-100 shadow-xl">

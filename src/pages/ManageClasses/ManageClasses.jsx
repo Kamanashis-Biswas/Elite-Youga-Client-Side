@@ -32,6 +32,7 @@ const ManageClass = () => {
     }, [update]);
     if(!data.length) return (<div>No classes found!</div>);
     return (
+        
         <div className="overflow-auto h-full">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-10 h-full">
                 {data.map(d => (

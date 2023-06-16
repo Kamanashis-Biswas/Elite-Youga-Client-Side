@@ -63,7 +63,6 @@ const ManageUsers = () => {
                                     <div className="flex flex-col">
                                         <button onClick={()=>updateRole({id: u._id, role: "admin"})} className={`btn btn-sm mb-2 ${u.role=="admin"?"bg-red-500 disabled":""}`}>Admin</button>
                                         <button onClick={()=>updateRole({id: u._id, role: "instructors"})} className={`btn btn-sm mb-2 ${u.role=="instructors"?"bg-sky-300 disabled":""}`}>Instructor</button>
-                                        {/* <button onClick={()=>updateRole({id: u._id, role: "student"})} className="btn btn-sm mb-2">Student</button> */}
                                     </div>
                                 </td>
 
