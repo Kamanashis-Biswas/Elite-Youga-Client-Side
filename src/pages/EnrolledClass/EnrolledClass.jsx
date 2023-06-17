@@ -9,7 +9,7 @@ const EnrolledClass = () => {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/get-eclass?userId=${localStorage.getItem('userId')}`)
+        fetch(`https://assignment-12-server-side-xi.vercel.app/get-eclass?userId=${localStorage.getItem('userId')}`)
             .then(data=>data.json())
             .then(data=>{
                 let arr = [];
@@ -18,7 +18,7 @@ const EnrolledClass = () => {
             })
     }, [update]);
     const deleteClass = async({classId})=>{
-        fetch(`http://localhost:5000/delete-class?classId=${classId}&userId=${localStorage.getItem('userId')}`, {method: "DELETE"})
+        fetch(`https://assignment-12-server-side-xi.vercel.app/delete-class?classId=${classId}&userId=${localStorage.getItem('userId')}`, {method: "DELETE"})
             .then(data=>data.json())
             .then(data=>{
                 console.log(data);

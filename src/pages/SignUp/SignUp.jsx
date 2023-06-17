@@ -30,7 +30,7 @@ const SignUp = () => {
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
                         const saveUser = { name: data.name, email: data.email,image:data.photoURL, role: "student" }
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://assignment-12-server-side-xi.vercel.app/users', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(saveUser)

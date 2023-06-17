@@ -8,7 +8,7 @@ const PopularClasses = () => {
     const navigate = useNavigate();
     useEffect(()=>{
         if(pclass.length) return;
-        axios.get('http://localhost:5000/all-class').then(resp=>{
+        axios.get('https://assignment-12-server-side-xi.vercel.app/all-class').then(resp=>{
             let data = resp.data.data || [];
             data = data.sort((b, a)=> a.enrolled - b.enrolled);
             console.log(data);
