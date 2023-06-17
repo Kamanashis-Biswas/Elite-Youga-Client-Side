@@ -27,10 +27,10 @@ const PopularClasses = () => {
                             <figure><img src={p.class_image} alt="Shoes" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{p.class_name}</h2>
-                                <p>{p.inst_name}</p>
-                                <p>{p.inst_email}</p>
-                                <p>{p.seats}</p>
-                                <p>{p.price}</p>
+                                <p>Instructor Name: {p.inst_name}</p>
+                                <p>Instructor Email: {p.inst_email}</p>
+                                <p>Available Seat: {p.seats}</p>
+                                <p>Price: {p.price}</p>
                                 
                                 <div className="card-actions justify-end">
                                     <button onClick={()=>navigate(`/payment/${p._id}`)} className="btn btn-primary">Buy Now</button>
