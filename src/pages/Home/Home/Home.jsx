@@ -3,6 +3,7 @@ import Banner from "../Banner/Banner";
 import PopularClasses from "../PopularClasses/PopularClasses";
 import Routine from "../Routine/Routine";
 import PopularInstructors from "../../../components/Popular Instructors/PopularInstructors";
+import AnimatedText from "../../../components/AnimatedText/AnimatedText";
 
 
 
@@ -18,6 +19,7 @@ const Home = () => {
          
             <Routine></Routine>
             <PopularInstructors></PopularInstructors>
+            <AnimatedText></AnimatedText>
         </div>
     );
 };
