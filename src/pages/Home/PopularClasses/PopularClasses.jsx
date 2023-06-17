@@ -28,6 +28,10 @@ const PopularClasses = () => {
                             <div className="card-body">
                                 <h2 className="card-title">{p.class_name}</h2>
                                 <p>{p.inst_name}</p>
+                                <p>{p.inst_email}</p>
+                                <p>{p.seats}</p>
+                                <p>{p.price}</p>
+                                
                                 <div className="card-actions justify-end">
                                     <button onClick={()=>navigate(`/payment/${p._id}`)} className="btn btn-primary">Buy Now</button>
                                 </div>
