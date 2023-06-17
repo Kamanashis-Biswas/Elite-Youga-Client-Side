@@ -1,7 +1,19 @@
+import { useEffect, useState } from "react";
 import SectionTitle from "../SectionTitle/SectionTitle";
 
 
 const PopularInstructors = () => {
+
+    const [inst, setInst] = useState([]);
+    useEffect(()=>{
+        fetch('http://localhost:5000/instructors')
+        .then((data)=>data.json())
+            .then(data=>{
+                console.log(data);
+                setInst(data || []);
+            });
+    }, []);
+
     return (
         <div>
             <SectionTitle heading={'Popular Instructors'}></SectionTitle>
@@ -15,25 +27,25 @@ const PopularInstructors = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        
-                            <tr>
+                        {inst.map(i=>(
+                            <tr key={i._id}>
                                 <td>
                                     <div className="flex items-center space-x-3">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
-                                                <img src="" alt="Avatar Tailwind CSS Component" />
+                                                <img src={i.image} alt="Avatar Tailwind CSS Component" />
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="font-bold">Name:</div>
+                                            <div className="font-bold">{i.name}</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    Email
+                                    {i.email}
                                 </td>
                             </tr>
-                        
+                        ))}
 
                         
                     </tbody>

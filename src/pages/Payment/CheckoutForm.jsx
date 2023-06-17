@@ -1,13 +1,13 @@
 import { CardElement, Elements, useElements, useStripe } from "@stripe/react-stripe-js"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {loadStripe} from '@stripe/stripe-js';
-
+import {useNavigate, useParams} from 'react-router-dom';
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
-// import useAxiosSecure from "../../../hooks/useAxiosSecure";
-// import useAuth from "../../../hooks/useAuth";
-// import './CheckoutForm.css';
-const stripePromise = loadStripe('STRIPE_PUBLISHABLE_API_KEY');
+import { AuthContext } from "../../components/providers/AuthProvider";
+import axios from 'axios';
+
+const stripePromise = loadStripe('pk_test_51NF9ebIzpYtwZBKLz4QjEBBnI0kF1r5Z9aMUYU63lGMbejCYA6Hbda37DJTcdlHRKpUNJ3BDkz07okU5vd3oNzuK00Iixq8CKR');
 
 
 
@@ -17,38 +17,55 @@ const Wrapper = (props) => (
   </Elements>
 );
 
-const CheckoutForm = ({ cart, price }) => {
+const CheckoutForm = () => {
+    const {id} = useParams();
     const stripe = useStripe();
     const elements = useElements();
-    // const { user } = useAuth();
-    const { user } = {};
+    const { user } = useContext(AuthContext);
     // const [axiosSecure] = useAxiosSecure()
     const [cardError, setCardError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
+    const [cls, setCls] = useState(null);
+    const navigate = useNavigate();
 
+    useEffect(()=>{
+        const fet = async()=>{
+            const resp = await axios.get(`http://localhost:5000/class/${id}`);
+            if(resp){
+                setCls(resp.data);
+                createIntent(resp.data.price || 0);
+            }
+        }
 
-    // useEffect(() => {
-    //     if (price > 0) {
-    //         axiosSecure.post('/create-payment-intent', { price })
-    //             .then(res => {
-    //                 console.log(res.data.clientSecret);
-    //                 setClientSecret(res.data.clientSecret);
-    //             })
-    //     }
-    // }, [price, axiosSecure])
+        if(!cls){
+            fet();
+        };
+
+    }, []);
+
+    const createIntent = async (price)=>{
+        if (price > 0) {
+            axios.post('http://localhost:5000/create-payment-intent', { price })
+                .then(res => {
+                    console.log(res);
+                    setClientSecret(res.data.clientSecret);
+                })
+        }
+    }
+    
 
 
     const handleSubmit = async (event) => {
-        /*
         event.preventDefault();
 
         if (!stripe || !elements) {
             return;
         }
-MyComponent
+
         const card = elements.getElement(CardElement);
+
         if (card == null) {
             return;
         }
@@ -61,7 +78,6 @@ MyComponent
             setCardError(error.message);
         } else {
             setCardError('');
-            //console.log('PaymentMethod', paymentMethod);
         }
 
         setProcessing(true);
@@ -82,37 +98,24 @@ MyComponent
         if (confirmError) {
             console.log(confirmError);
         }
-        console.log('payment intent', paymentIntent)
         setProcessing(false)
         if (paymentIntent.status === 'succeeded') {
             setTransactionId(paymentIntent.id);
-            //save payment information to the server
             const payment = {
                 email: user?.email,
                 transactionId: paymentIntent.id,
-                price,
+                price: cls?.price,
+                classId: cls?._id,
+                userId: localStorage.getItem('userId'),
                 date: new Date(),
-                quantity: cart.length,
-                cartItems: cart.map(item => item._id),
-                menuItems: cart.map(item => item.menuItemId),
-                Status: 'service pending',
-                itemName: cart.map(item => item.name),
             }
-            axiosSecure.post('/payments', payment)
+            axios.post('http://localhost:5000/payments', payment)
                 .then(res => {
-                    console.log(res.data);
-                    if (res.data.insertResult.insertedId) {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: "Payment Confirmed",
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
+                    if (res.data.confirm) {
+                        navigate('/dashboard/selectedclass');
                     }
                 })
         }
-*/
     }
 
     return (

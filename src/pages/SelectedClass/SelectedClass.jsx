@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
 const SelectedClass = () => {
     const [cls, setCls] = useState([]);
     const [update,setUpdate] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(()=>{
         fetch(`http://localhost:5000/get-sclass?userId=${localStorage.getItem('userId')}`)
@@ -42,7 +44,7 @@ const SelectedClass = () => {
                         <p>{c.price}</p>
                         <div className="card-actions justify-between">
                             <button onClick={()=>deleteClass({classId: c._id})} className="btn btn-primary">Delete</button>
-                            <button className="btn btn-primary">Pay</button>
+                            <button onClick={()=>navigate(`/payment/${c._id}`)} className="btn btn-primary">Pay</button>
                         </div>
                     </div>
                 </div>
