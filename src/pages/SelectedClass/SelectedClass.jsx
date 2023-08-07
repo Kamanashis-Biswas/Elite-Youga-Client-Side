@@ -9,7 +9,7 @@ const SelectedClass = () => {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        fetch(`https://assignment-12-server-side-xi.vercel.app/get-sclass?userId=${localStorage.getItem('userId')}`)
+        fetch(`https://eliteyouga-server-side.vercel.app/get-sclass?userId=${localStorage.getItem('userId')}`)
             .then(data=>data.json())
             .then(data=>{
                 let arr = [];
@@ -18,7 +18,7 @@ const SelectedClass = () => {
             })
     }, [update]);
     const deleteClass = async({classId})=>{
-        fetch(`https://assignment-12-server-side-xi.vercel.app/delete-class?classId=${classId}&userId=${localStorage.getItem('userId')}`, {method: "DELETE"})
+        fetch(`https://eliteyouga-server-side.vercel.app/delete-class?classId=${classId}&userId=${localStorage.getItem('userId')}`, {method: "DELETE"})
             .then(data=>data.json())
             .then(data=>{
                 console.log(data);

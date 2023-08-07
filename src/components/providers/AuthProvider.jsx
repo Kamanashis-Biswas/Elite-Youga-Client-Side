@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
     
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            fetch(`https://assignment-12-server-side-xi.vercel.app/user?email=${currentUser.email}`)
+            fetch(`https://eliteyouga-server-side.vercel.app/user?email=${currentUser.email}`)
                 .then(data=>data.json())
                 .then(data=>{
                     currentUser.role = data.user.role;

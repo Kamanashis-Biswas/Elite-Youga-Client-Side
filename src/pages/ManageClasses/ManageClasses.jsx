@@ -10,7 +10,7 @@ const ManageClass = () => {
     const [update,setUpdate] = useState(false);
 
     const updateStatus = async({id, status})=>{
-        const resp = await fetch(`https://assignment-12-server-side-xi.vercel.app/update-class?id=${id}&status=${status}`);
+        const resp = await fetch(`https://eliteyouga-server-side.vercel.app/update-class?id=${id}&status=${status}`);
         const data = await resp.json();
         setUpdate(!update);
         Swal.fire({
@@ -23,7 +23,7 @@ const ManageClass = () => {
     }
 
     useEffect(() => {
-        const resp = fetch(`https://assignment-12-server-side-xi.vercel.app/all-class`)
+        const resp = fetch(`https://eliteyouga-server-side.vercel.app/all-class`)
             .then(resp => resp.json())
             .then(data => {
                 console.log(data.data);

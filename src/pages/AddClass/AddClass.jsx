@@ -18,7 +18,7 @@ const AddClass = () => {
         price: +event.target.price.value,
       };
     
-      const resp = await fetch('https://assignment-12-server-side-xi.vercel.app/add-class', 
+      const resp = await fetch('https://eliteyouga-server-side.vercel.app/add-class', 
         {method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(data)}
       );
       const d = await resp.json();

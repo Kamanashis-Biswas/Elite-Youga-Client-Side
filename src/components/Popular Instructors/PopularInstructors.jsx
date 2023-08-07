@@ -6,7 +6,7 @@ const PopularInstructors = () => {
 
     const [inst, setInst] = useState([]);
     useEffect(()=>{
-        fetch('https://assignment-12-server-side-xi.vercel.app/instructors')
+        fetch('https://eliteyouga-server-side.vercel.app/instructors')
         .then((data)=>data.json())
             .then(data=>{
                 console.log(data);

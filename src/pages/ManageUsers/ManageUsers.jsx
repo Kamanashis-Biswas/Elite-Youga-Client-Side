@@ -10,7 +10,7 @@ const ManageUsers = () => {
     const [update,setUpdate] = useState(false);
 
     const updateRole = ({id, role})=>{
-        fetch(`https://assignment-12-server-side-xi.vercel.app/update-user?id=${id}&role=${role}`).then(()=>{});
+        fetch(`https://eliteyouga-server-side.vercel.app/update-user?id=${id}&role=${role}`).then(()=>{});
         setUpdate(!update);
         Swal.fire({
             position: 'center',
@@ -21,7 +21,7 @@ const ManageUsers = () => {
         });
     };
     useEffect(()=>{
-        fetch('https://assignment-12-server-side-xi.vercel.app/user')
+        fetch('https://eliteyouga-server-side.vercel.app/user')
             .then(data=>data.json())
             .then(data=>{
                 setUsers(data.users);

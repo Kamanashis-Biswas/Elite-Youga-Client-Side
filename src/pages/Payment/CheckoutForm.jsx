@@ -32,7 +32,7 @@ const CheckoutForm = () => {
 
     useEffect(()=>{
         const fet = async()=>{
-            const resp = await axios.get(`https://assignment-12-server-side-xi.vercel.app/class/${id}`);
+            const resp = await axios.get(`https://eliteyouga-server-side.vercel.app/class/${id}`);
             if(resp){
                 setCls(resp.data);
                 createIntent(resp.data.price || 0);
@@ -47,7 +47,7 @@ const CheckoutForm = () => {
 
     const createIntent = async (price)=>{
         if (price > 0) {
-            axios.post('https://assignment-12-server-side-xi.vercel.app/create-payment-intent', { price })
+            axios.post('https://eliteyouga-server-side.vercel.app/create-payment-intent', { price })
                 .then(res => {
                     console.log(res);
                     setClientSecret(res.data.clientSecret);
@@ -109,7 +109,7 @@ const CheckoutForm = () => {
                 userId: localStorage.getItem('userId'),
                 date: new Date(),
             }
-            axios.post('https://assignment-12-server-side-xi.vercel.app/payments', payment)
+            axios.post('https://eliteyouga-server-side.vercel.app/payments', payment)
                 .then(res => {
                     if (res.data.confirm) {
                         navigate('/dashboard/selectedclass');

@@ -7,7 +7,7 @@ const Classes = () => {
     const [cls, setCls] = useState([]);
 
     useEffect(() => {
-        fetch('https://assignment-12-server-side-xi.vercel.app/all-class').then(data => data.json())
+        fetch('https://eliteyouga-server-side.vercel.app/all-class').then(data => data.json())
             .then(data => {
                 console.log(data.data);
                 setCls(data.data);
@@ -15,7 +15,7 @@ const Classes = () => {
     }, []);
 
     const addClass = async ({ classId }) => {
-        const resp = await fetch('https://assignment-12-server-side-xi.vercel.app/set-class', { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ userId: localStorage.getItem('userId'), classId: classId }) });
+        const resp = await fetch('https://eliteyouga-server-side.vercel.app/set-class', { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ userId: localStorage.getItem('userId'), classId: classId }) });
         const data = await resp.json();
         Swal.fire({
             position: 'center',
