@@ -3,7 +3,7 @@ import { JackInTheBox } from "react-awesome-reveal";
 const AnimatedText = () => {
   return (
     <div>
-      <section className="py-16">
+      <section className="cpy-16">
       <div className="container mx-auto px-8">
         <h2 className="text-4xl font-semibold text-center mb-12">
           Discover Yoga through Animated Content
