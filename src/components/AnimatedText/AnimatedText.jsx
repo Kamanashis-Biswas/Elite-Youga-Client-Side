@@ -1,15 +1,45 @@
 import { JackInTheBox } from "react-awesome-reveal";
 
 const AnimatedText = () => {
-    return (
-        <JackInTheBox>
-          <div className="text-center w-full md:w-1/2 mx-auto border p-10 rounded-lg mb-10">
-            <h2 className="text-3xl font-bold mb-10">Best Muscle-Building Biceps Exercises</h2>
-            <p>In other words, it&apos;s OK to get heavier as the weights get heavier. A little more surface area is a good thing! You'll increase your muscle mass, and subsequently, your strength. Worry about cutting away any extra fat you gained once you've got more muscle to work with.</p>
-          </div>
-      
-    </JackInTheBox>
-    );
+  return (
+    <div>
+      <section className="py-16">
+      <div className="container mx-auto px-8">
+        <h2 className="text-4xl font-semibold text-center mb-12">
+          Discover Yoga through Animated Content
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <JackInTheBox>
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-4">Mindful Breathing</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Immerse yourself in the art of pranayama, the practice of controlled breathing. Learn to synchronize your breath with movement and experience the calming effects it has on your mind and body.
+              </p>
+            </div>
+          </JackInTheBox>
+          
+          <JackInTheBox>
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-4">Balance and Harmony</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Explore the balance between strength and flexibility with asanas that challenge your stability. Cultivate harmony in body and mind as you move through sequences designed to align your energy centers.
+              </p>
+            </div>
+          </JackInTheBox>
+          
+          <JackInTheBox>
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-4">Inner Peace Meditation</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Experience the transformative power of meditation. Dive deep within yourself to discover the serenity that resides at your core. Develop mindfulness and cultivate a sense of inner peace and tranquility.
+              </p>
+            </div>
+          </JackInTheBox>
+        </div>
+      </div>
+    </section>
+    </div>
+  );
 };
 
 export default AnimatedText;
