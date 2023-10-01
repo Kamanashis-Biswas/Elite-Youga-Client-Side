@@ -39,10 +39,10 @@ This is a Youga based website. A brief description of what this project is all a
 
 ## Admin Login:
 `
-Admin Email: email@email.com
+Admin Account Email: email@email.com
 `
 `
-Admin Email password: *Password@123#
+Admin Account password: *Password@123#
 `
 
 ## Live Website Link: [(https://assignment-12-457aa.web.app/)]
