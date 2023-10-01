@@ -37,4 +37,10 @@ This is a Youga based website. A brief description of what this project is all a
 - Feature 4: You showed all selected class and when you buy thhis class then class will be added from enrolled section.
 - Feature 5: Class instructors will be addded only admin.
 
+## Admin Login:
+`
+Admin Email: email@email.com
+Admin Email password: *Password@123#
+`
+
 ## Live Website Link: [(https://assignment-12-457aa.web.app/)]
