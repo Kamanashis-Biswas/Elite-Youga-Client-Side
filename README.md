@@ -40,6 +40,8 @@ This is a Youga based website. A brief description of what this project is all a
 ## Admin Login:
 `
 Admin Email: email@email.com
+`
+`
 Admin Email password: *Password@123#
 `
 
